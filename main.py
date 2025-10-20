@@ -25,6 +25,15 @@ async def save_text(data: TextData):
     except Exception as e:
         return {"status": "error", "message": str(e)}
 
+@app.get("/get-text")
+async def get_text():
+    try:
+        with open("data.txt", "r", encoding="utf-8") as file:
+            content = file.read()
+        return {"status": "success", "content": content}
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=3002)
